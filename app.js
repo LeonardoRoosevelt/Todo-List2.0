@@ -1,7 +1,8 @@
 const express = require("express")
 const app = express()
 const port = 3000
-const mongoose = require("mongoose")
+const mongoose = require("mongoose")\
+const exphbs = require("express-handlebars")
 
 mongoose.connect("mongodb://localhost/todo-list", {
   useNewUrlParser: true,
@@ -18,8 +19,13 @@ db.once("open", () => {
   console.log("mongodb success!")
 })
 
+
+app.engine('hbs', exphbs({defaultLayout:'main',extname:'hbs'}))
+
+app.set('view engine','hbs')
+
 app.get("/", (req, res) => {
-  res.send("hello world")
+  res.render("index")
 })
 
 app.listen(port, () => {
