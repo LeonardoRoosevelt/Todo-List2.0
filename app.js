@@ -80,6 +80,14 @@ app.post("/todos/:id/edit", (req, res) => {
     .catch(error => console.error(error))
 })
 
+app.post("/todos/:id/delete", (req, res) => {
+  const id = req.params.id
+  return Todo.findById(id)
+    .then(todo => todo.remove())
+    .then(todo => res.redirect("/"))
+    .catch(error => console.error(error))
+})
+
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`)
 })

@@ -6,6 +6,10 @@
     {{this.name}}
     <a href="./todos/{{this._id}}">Detail</a>
     <a href="./todos/{{this._id}}/edit">edit</a>
+    {{!-- form display預設是bar所以要另外用inline已確保不換行 --}}
+    <form action="./todos/{{this._id}}/delete" method="post" style="display: inline;">
+      <button type="submit">delete</button>
+    </form>
   </li>
   {{/each}}
 </ul>
