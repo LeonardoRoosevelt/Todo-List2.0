@@ -31,6 +31,8 @@ app.get("/", (req, res) => {
   //拿到全部的Todo資料 => controller  .find, .lean = model  .render = view
   Todo.find()
     .lean()
+    // asc是順序 desc是倒序
+    .sort({ _id: "asc" })
     .then(todos => res.render("index", { todos: todos }))
     .catch(error => console.error(error))
   // res.render("index")
